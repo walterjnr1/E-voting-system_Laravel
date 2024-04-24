@@ -116,7 +116,7 @@ class CandidateController extends Controller
         $voterID = $request->voterID;
         $voterRecord = tblcandidate::where('voterID', $voterID)->first();
         if (!$voterRecord) {
-            return response()->json(['success' => false, 'message' => 'Sorry, You are not yet a Candidate'], 404);
+            return response()->json(['success' => false, 'message' => 'You are not a Candidate'], 404);
         } else{
             return response()->json(['success' => true, 'message' => 'Candidate exist'], 201);
 
