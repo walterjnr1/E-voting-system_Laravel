@@ -35,4 +35,3 @@ Route::post('/vote_Governor', [voteController::class,'vote_Governor'])->name('vo
 
 //result route
 Route::get('/getPresidentResult', [resultController::class,'getPresidentResult'])->name('getPresidentResult.Get');
-Route::get('/getGovernorResult', [resultController::class,'getGovernorResult'])->name('getGovernorResult.Get');
