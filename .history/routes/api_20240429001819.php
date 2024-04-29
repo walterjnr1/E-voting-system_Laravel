@@ -27,7 +27,9 @@ Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDeta
 Route::get('/getAllParties', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');
 Route::get('/selectGovernor', [CandidateController::class,'selectGovernor'])->name('selectGovernor.Get');
 Route::get('/selectPresident', [CandidateController::class,'selectPresident'])->name('selectPresident.Get');
+Route::get('/select_A_Governor', [CandidateController::class,'select_A_Governor'])->name('select_A_Governor.Get');
+Route::get('/select_A_President', [CandidateController::class,'select_A_President'])->name('select_A_President.Get');
 
 //vote route
 Route::post('/vote_President', [voteController::class,'vote_President'])->name('vote_President.post');
-Route::post('/vote_Governor', [voteController::class,'vote_Governor'])->name('vote_Governor.post');
+Route::post('/vote_Governor', [voteController::class,'vote_President'])->name('vote_President.post');

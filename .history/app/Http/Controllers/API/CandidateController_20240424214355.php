@@ -19,14 +19,18 @@ class CandidateController extends Controller
 {
     public function registerCandidate(Request $request)
     {
+        $candidatess = tblcandidate::where('voterID', $request->voterID)->first();
 
         $request->validate([
-           
+            'fullname' => 'required|string|max:59',
+            'phone' => 'required|string|max:59',
+            'email' => 'required|string|max:59',
+            'occupation' => 'required|string|max:59',
             'party' => 'required|string|max:59',
             'office' => 'required|string|max:59',
             'voterID' => 'required|string|max:12|unique:tblcandidates',
         ], [
-            'voterID.unique' => "Sorry, You already Apply ",
+            'voterID.unique' => "Sorry, You already Applied as a $candidatess->office ",
         ]);
         
             $candidate = tblcandidate::create([
@@ -41,8 +45,6 @@ class CandidateController extends Controller
             'party' => $request->party, 
             'status' => "1",
             'election_year' => date('Y'), 
-            'image' => $request->image, 
-
              ]);
 
         
@@ -56,7 +58,7 @@ class CandidateController extends Controller
             $party =  $candidate->party;
 
             //send success message via email
-            $appname= env('APP_NAME');  
+            $appname="Secured Mobile-based E-voting System using 2FA security";  
             $email_server="SMTP.GMAIL.COM";
             $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
             $app_password="XMVLDREPYHGKJFKF";
@@ -130,24 +132,4 @@ public function getCandidateDetails(Request $request)
     return response()->json($candidateDetails, 201);
     }
 }
-public function getAllParties()
-{
-    $parties = DB::table('tblpartys')->select('name', 'logo')->get();
-    return response()->json($parties, 201);
-}
-
-public function selectGovernor()
-{
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
-    return response()->json($candidates, 201);
-}
-
-public function selectPresident()
-{
-    $candidates = tblcandidate::where('office', 'President')->where('status', 1)->get();
-    return response()->json($candidates, 201);
-}
-
-
-
 }

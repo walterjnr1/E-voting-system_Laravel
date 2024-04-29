@@ -138,7 +138,7 @@ public function getAllParties()
 
 public function selectGovernor()
 {
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'Governor')->get();
     return response()->json($candidates, 201);
 }
 

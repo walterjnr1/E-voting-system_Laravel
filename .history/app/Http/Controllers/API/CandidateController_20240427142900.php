@@ -138,16 +138,24 @@ public function getAllParties()
 
 public function selectGovernor()
 {
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'Governor')->get();
     return response()->json($candidates, 201);
 }
 
 public function selectPresident()
 {
-    $candidates = tblcandidate::where('office', 'President')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'President')->get();
+    return response()->json($candidates, 201);
+}
+public function select_A_Governor()
+{
+    $candidates = tblcandidate::where('office', 'Governor')->get();
     return response()->json($candidates, 201);
 }
 
-
-
+public function selectPresident()
+{
+    $candidates = tblcandidate::where('office', 'President')->get();
+    return response()->json($candidates, 201);
+}
 }

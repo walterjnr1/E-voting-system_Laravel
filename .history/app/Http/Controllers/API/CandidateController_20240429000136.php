@@ -138,16 +138,32 @@ public function getAllParties()
 
 public function selectGovernor()
 {
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'Governor')->get();
     return response()->json($candidates, 201);
 }
 
 public function selectPresident()
 {
-    $candidates = tblcandidate::where('office', 'President')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'President')->get();
     return response()->json($candidates, 201);
 }
 
 
+public function vote_President(Request $request)
+{
+    $candidateID = $request->input('candidateID');
+    $voterID = $request->input('voterID');
 
+    check if voterID and election_type already exist in tblvotes table
+
+    
+}
+
+
+public function vote_Governor(Request $request)
+{
+    $candidateID = $request->input('candidateID');
+    $candidate = tblcandidate::where('office', 'Governor')->where('candidateID', $candidateID)->first();
+    return response()->json($candidate, 201);
+}
 }

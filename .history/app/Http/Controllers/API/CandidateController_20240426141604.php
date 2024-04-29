@@ -56,7 +56,7 @@ class CandidateController extends Controller
             $party =  $candidate->party;
 
             //send success message via email
-            $appname= env('APP_NAME');  
+            $appname= env('');  
             $email_server="SMTP.GMAIL.COM";
             $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
             $app_password="XMVLDREPYHGKJFKF";
@@ -138,16 +138,13 @@ public function getAllParties()
 
 public function selectGovernor()
 {
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'Governor')->get();
     return response()->json($candidates, 201);
 }
 
 public function selectPresident()
 {
-    $candidates = tblcandidate::where('office', 'President')->where('status', 1)->get();
+    $candidates = tblcandidate::where('office', 'President')->get();
     return response()->json($candidates, 201);
 }
-
-
-
 }

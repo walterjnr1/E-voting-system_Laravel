@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\VoterController;
 use App\Http\Controllers\API\CandidateController;
-use App\Http\Controllers\API\voteController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -26,8 +25,4 @@ Route::post('/validateCandidate', [CandidateController::class,'chk_if_candidate'
 Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getCandidateDetails.Get');
 Route::get('/getAllParties', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');
 Route::get('/selectGovernor', [CandidateController::class,'selectGovernor'])->name('selectGovernor.Get');
-Route::get('/selectPresident', [CandidateController::class,'selectPresident'])->name('selectPresident.Get');
-
-//vote route
-Route::post('/vote_President', [voteController::class,'vote_President'])->name('vote_President.post');
-Route::post('/vote_Governor', [voteController::class,'vote_Governor'])->name('vote_Governor.post');
+Route::get('/selectPresident', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');

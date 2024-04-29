@@ -41,8 +41,6 @@ class CandidateController extends Controller
             'party' => $request->party, 
             'status' => "1",
             'election_year' => date('Y'), 
-            'image' => $request->image, 
-
              ]);
 
         
@@ -56,7 +54,7 @@ class CandidateController extends Controller
             $party =  $candidate->party;
 
             //send success message via email
-            $appname= env('APP_NAME');  
+            $appname="Secured Mobile-based E-voting System using 2FA security";  
             $email_server="SMTP.GMAIL.COM";
             $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
             $app_password="XMVLDREPYHGKJFKF";
@@ -130,24 +128,15 @@ public function getCandidateDetails(Request $request)
     return response()->json($candidateDetails, 201);
     }
 }
-public function getAllParties()
+public function getParty(Request $request)
 {
-    $parties = DB::table('tblpartys')->select('name', 'logo')->get();
-    return response()->json($parties, 201);
+    $voterID = $request->voterID;
+    $voterRecord = tblcandidate::where('voterID', $voterID)->first();
+    if (!$voterRecord) {
+        return response()->json(['success' => false, 'message' => 'Sorry, You are not yet a Candidate'], 404);
+    } else{
+        return response()->json(['success' => true, 'message' => 'Candidate exist'], 201);
+
+    }
 }
-
-public function selectGovernor()
-{
-    $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->get();
-    return response()->json($candidates, 201);
-}
-
-public function selectPresident()
-{
-    $candidates = tblcandidate::where('office', 'President')->where('status', 1)->get();
-    return response()->json($candidates, 201);
-}
-
-
-
 }
