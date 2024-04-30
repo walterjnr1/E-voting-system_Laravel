@@ -133,11 +133,11 @@ public function getPresidentCandidateDetails(Request $request)
     }
 }
 
-public function getGovernorCandidateDetails(Request $request)
+public function getPresidentCandidateDetails(Request $request)
 {
     $candidates = DB::table('tblcandidates')
         ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
-        ->where('tblcandidates.office', 'Governor')
+        ->where('tblcandidates.office', 'President') // add this line
         ->select('tblcandidates.*', 'tblpartys.*')
         ->get();
     if ($candidates) {

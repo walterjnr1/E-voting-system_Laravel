@@ -121,7 +121,9 @@ class CandidateController extends Controller
         }
 }
 
-public function getPresidentCandidateDetails(Request $request)
+public function getCandidateDetails(Request $request)
+{
+ public function getCandidateDetails(Request $request)
 {
     $candidates = DB::table('tblcandidates')
         ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
@@ -133,16 +135,6 @@ public function getPresidentCandidateDetails(Request $request)
     }
 }
 
-public function getGovernorCandidateDetails(Request $request)
-{
-    $candidates = DB::table('tblcandidates')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
-        ->where('tblcandidates.office', 'Governor')
-        ->select('tblcandidates.*', 'tblpartys.*')
-        ->get();
-    if ($candidates) {
-        return response()->json($candidates, 201);
-    }
 }
 public function getAllParties()
 {

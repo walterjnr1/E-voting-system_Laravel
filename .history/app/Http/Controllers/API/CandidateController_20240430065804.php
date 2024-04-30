@@ -121,28 +121,24 @@ class CandidateController extends Controller
         }
 }
 
-public function getPresidentCandidateDetails(Request $request)
+public function getCandidateDetails(Request $request)
 {
-    $candidates = DB::table('tblcandidates')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
-        ->where('tblcandidates.office', 'President') // add this line
-        ->select('tblcandidates.*', 'tblpartys.*')
-        ->get();
-    if ($candidates) {
-        return response()->json($candidates, 201);
-    }
-}
+ //   $voterID = $request->input('voterID');
+  //  $candidateDetails = tblcandidate::where('voterID', $voterID)->first();
+  
+  //  if ($candidateDetails) {
+  //  return response()->json($candidateDetails, 201);
+   // }
 
-public function getGovernorCandidateDetails(Request $request)
-{
-    $candidates = DB::table('tblcandidates')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
-        ->where('tblcandidates.office', 'Governor')
-        ->select('tblcandidates.*', 'tblpartys.*')
-        ->get();
-    if ($candidates) {
-        return response()->json($candidates, 201);
-    }
+   $candidates = DB::table('tblcandidates')
+   ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
+   ->select('tblcandidates.*', 'tblpartys.logo')
+   ->get();
+   if ($candidates) {
+     return response()->json($candidates, 201);
+     }
+  
+
 }
 public function getAllParties()
 {

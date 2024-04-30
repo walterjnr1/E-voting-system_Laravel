@@ -137,7 +137,7 @@ public function getGovernorCandidateDetails(Request $request)
 {
     $candidates = DB::table('tblcandidates')
         ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.id')
-        ->where('tblcandidates.office', 'Governor')
+        ->where('tblcandidates.office', 'Governor') // add this line
         ->select('tblcandidates.*', 'tblpartys.*')
         ->get();
     if ($candidates) {

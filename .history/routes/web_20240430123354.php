@@ -58,6 +58,25 @@ Route::post('/ChangePassword', [AdminController::class,'changePasswordPost'])->n
 
 Route::middleware('auth')->group(function () {
    
+    Route::get('/push_Notification', [notificationController::class,'push_NotificationView'])->name('push_Notification.view');
+    Route::post('/push_Notification', [notificationController::class,'push_NotificationPost'])->name('push_Notification.post');
+     
+    Route::get('/Notification/Record', [notificationController::class,'notificationRecordView'])->name('Notificationrecord.View');
+    Route::get('/Edit.NotificationRecord/{id}', [notificationController::class,'EditNotificationRecord'])->name('Notificationrecord.edit');
+    Route::post('/Update/NotificationRecord', [notificationController::class,'UpdateNotificationtRecord'])->name('Update.NotificationRecord');
+    Route::get('/delete.Notification/{id}', [notificationController::class,'Delete_Notification'])->name('delete.Notification');
+
+    Route::get('/vehicle_Tips', [notificationController::class,'vehicle_TipsView'])->name('vehicle_Tips.view');
+    Route::post('/vehicle_Tips', [notificationController::class,'vehicle_TipsPost'])->name('vehicle_Tips.post');
+    
+    Route::get('/Vehicletips/Record', [notificationController::class,'vehicletipsrecordView'])->name('vehicletipsrecord.View');
+    Route::get('/Edit.vehicletipsrecord/{id}', [notificationController::class,'EditvehicletipsRecord'])->name('vehicletipsrecord.edit');
+    Route::post('/Update/vehicletipsrecord', [notificationController::class,'UpdatevehicletipsRecord'])->name('Update.vehicletipsrecord');
+    Route::get('/delete.Vehicle.Tips/{id}', [notificationController::class,'Delete_vehicletipsrecord'])->name('delete.vehicletipsrecord');
+});
+
+Route::middleware('auth')->group(function () {
+   
     Route::get('/ActivityLog.Record', [ActivityLogController::class,'ActivityLogrecord'])->name('ActivityLog.view');
 });
 

@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::post('/registerCandidate', [CandidateController::class,'registerCandidate'])->name('registerCandidate.post');
  Route::post('/validateCandidate', [CandidateController::class,'chk_if_candidate'])->name('chk_if_candidate.post');
  Route::get('/getPresidentCandidateDetails', [CandidateController::class,'getPresidentCandidateDetails'])->name('getPresidentCandidateDetails.Get');
- Route::get('/getGovernorCandidateDetails', [CandidateController::class,'getGovernorCandidateDetails'])->name('getGovernorCandidateDetails.Get');
+ Route::get('/getGovernorCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getCandidateDetails.Get');
  Route::get('/getAllParties', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');
  Route::get('/selectGovernor', [CandidateController::class,'selectGovernor'])->name('selectGovernor.Get');
  Route::get('/selectPresident', [CandidateController::class,'selectPresident'])->name('selectPresident.Get');
