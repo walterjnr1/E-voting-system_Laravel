@@ -20,11 +20,8 @@ class resultController extends Controller
     public function getGovernorResult()
     {
     
-        $candidates = tblcandidate::where('office', 'Governor')->where('tblcandidates.status', 1)
-                ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-                ->orderBy('count', 'desc')
-                ->get();
-            return response()->json(['data'=> $candidates], 201);
+        $candidates = tblcandidate::where('office', 'Governor')->where('status', 1)->orderBy('count', 'desc')->get();
+        return response()->json(['data'=> $candidates], 201);
     
     }
     }
