@@ -9,8 +9,7 @@ class activity_log extends Model
 {
     use HasFactory;
 
-    protected $fillable = 
-    [
+    protected $fillable = [
     'task',
     ];
 
