@@ -28,15 +28,12 @@ class CandidateController extends Controller
         ], [
             'voterID.unique' => "Sorry, You already Apply ",
         ]);
-
-        $voter = tblvoter::where('voterID', $request->voterID)->first();
-            $email =  $voter->email;
-            $fullname =  $voter->fullname;
         
             $candidate = tblcandidate::create([
             'voterID' => $request->voterID, 
             'candidateID' => "C".rand(10200, 90002),
-            'candidateName' => $fullname, 
+            'candidateName' => "C".rand(10200, 90002),
+
             'count' => 0, 
             'office' => $request->office,
             'party' => $request->party, 

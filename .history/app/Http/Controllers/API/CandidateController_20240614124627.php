@@ -36,7 +36,7 @@ class CandidateController extends Controller
             $candidate = tblcandidate::create([
             'voterID' => $request->voterID, 
             'candidateID' => "C".rand(10200, 90002),
-            'candidateName' => $fullname, 
+            'candidateName' => $request->voterID, 
             'count' => 0, 
             'office' => $request->office,
             'party' => $request->party, 
