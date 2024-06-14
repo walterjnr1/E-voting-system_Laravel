@@ -148,7 +148,7 @@ public function getCandidateDetails(Request $request)
     $voterID = $request->voterID;
 
     $candidate_data = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
+        ->join('tblvoters', 'tblcandidates.party', '=', 'tblvoters.voterID')
         ->where('tblcandidates.voterID', $voterID)
         ->select('tblcandidates.*', 'tblvoters.*')
         ->get();

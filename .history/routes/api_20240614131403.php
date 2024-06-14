@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::get('/getAllParties', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');
  Route::get('/selectGovernor', [CandidateController::class,'selectGovernor'])->name('selectGovernor.Get');
  Route::get('/selectPresident', [CandidateController::class,'selectPresident'])->name('selectPresident.Get');
- Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getCandidateDetails.Get');
+ Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getGovernorCandidateDetails.Get');
 
 // vote rout
  Route::post('/vote_President', [voteController::class,'vote_President'])->name('vote_President.post');

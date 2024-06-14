@@ -143,19 +143,6 @@ public function getGovernorCandidateDetails(Request $request)
         return response()->json($candidates, 201);
     }
 }
-public function getCandidateDetails(Request $request)
-{
-    $voterID = $request->voterID;
-
-    $candidate_data = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->where('tblcandidates.voterID', $voterID)
-        ->select('tblcandidates.*', 'tblvoters.*')
-        ->get();
-    if ($candidate_data) {
-        return response()->json($candidate_data, 201);
-    }
-}
 public function getAllParties()
 {
     $parties = DB::table('tblpartys')->select('name', 'logo')->get();
