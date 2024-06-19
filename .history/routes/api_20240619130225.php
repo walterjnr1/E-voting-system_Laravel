@@ -29,13 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::get('/getAllParties', [CandidateController::class,'getAllParties'])->name('getAllParties.Get');
  Route::get('/selectGovernor', [CandidateController::class,'selectGovernor'])->name('selectGovernor.Get');
  Route::get('/selectPresident', [CandidateController::class,'selectPresident'])->name('selectPresident.Get');
-<<<<<<<< HEAD:.history/routes/api_20240614131409.php
  Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getCandidateDetails.Get');
-========
- Route::get('/getCandidateDetails', [CandidateController::class,'getCandidateDetails'])->name('getGovernorCandidateDetails.Get');
->>>>>>>> 44d50f11b8aa2a37a0d1825629fb86dec1ee4d91:.history/routes/api_20240614131403.php
+ Route::get('/searchPresident', [CandidateController::class,'searchPresident'])->name('searchPresident.Get');
+ Route::get('/searchGovernor', [CandidateController::class,'searchGovernor'])->name('searchGovernor.Get');
 
-// vote rout
+// vote route
  Route::post('/vote_President', [voteController::class,'vote_President'])->name('vote_President.post');
  Route::post('/vote_Governor', [voteController::class,'vote_Governor'])->name('vote_Governor.post');
 
