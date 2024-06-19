@@ -234,14 +234,11 @@ $mail->send();
         $fullname= $voter->fullname;
         $phone= $voter->phone;
 
- //send otp via SMS
- $username = 'info.autosyst@gmail.com'; //Note: urlencodemust be added forusernameand
- $password = 'Integax.sms@2022'; // passwordas encryption code for security purpose.
- $senderID = 'E-Voting';
- $fullname =  $voter->fullname;
+
 
  $otp = rand(10200, 90002);
 
+ 
  $message = 'Hello, ' . $fullname . ' Your OTP to complete your registration is ' . $otp . '. Please Do not share with anybody';
  $api_url  = 'https://portal.nigeriabulksms.com/api/';
  $data = array('username' => $username, 'password' => $password, 'sender' => $senderID, 'message' => $message, 'mobiles' => $phone);

@@ -66,7 +66,7 @@ class VoterController extends Controller
         //send otp via SMS
         $username = 'info.autosyst@gmail.com'; //Note: urlencodemust be added forusernameand
         $password = 'Integax.sms@2022'; // passwordas encryption code for security purpose.
-        $senderID = 'E-Voting';
+        $senderID = 'E-voting';
         $fullname =  $voter->fullname;
 
         $otp = rand(10200, 90002);
@@ -162,7 +162,7 @@ $mail->send();
         $email_username = "ADMISSION.MANSENSHS@GMAIL.COM";
         $app_password = "XMVLDREPYHGKJFKF";
         $port = 465;
-        $email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+        $email_website = "support@evoting.com";
 
         $mail = new PHPMailer(true);
 
@@ -256,7 +256,7 @@ $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
 
@@ -362,7 +362,7 @@ $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
 

@@ -210,7 +210,7 @@ public function searchGovernor(Request $request)
             ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
             ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
             ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
+            ->orWhere('tblpartys.name', 'LIKE', "%{$query}%");
         })
         ->select('tblcandidates.*', 'tblvoters.*', 'tblpartys.*')
         ->get();

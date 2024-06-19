@@ -84,7 +84,7 @@ $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
      
@@ -162,7 +162,7 @@ $mail->send();
         $email_username = "ADMISSION.MANSENSHS@GMAIL.COM";
         $app_password = "XMVLDREPYHGKJFKF";
         $port = 465;
-        $email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+        $email_website = "support@evoting.com";
 
         $mail = new PHPMailer(true);
 
@@ -256,7 +256,7 @@ $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
 
@@ -362,7 +362,7 @@ $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
 

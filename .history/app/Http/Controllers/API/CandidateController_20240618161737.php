@@ -177,44 +177,25 @@ public function selectPresident()
 }
 public function searchPresident(Request $request)
 {
-    $searchQuery = $request->input('q');
-    $candidates = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
-        ->where('tblcandidates.office', 'President')
-        ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-         ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
+    $query = $request->input('search');
+
+    $candidates = tblcandidate::where('office', 'President')
+        ->where(function ($query) use ($query, $query) {
+            $query->where('candidateID', 'like', "%{$query}%")
+                ->orWhere('voterID', 'like', "%{$voterID}%");
         })
-        ->select('tblcandidates.*', 'tblvoters.*','tblpartys.*')
+        ->where('status', 1)
         ->get();
 
-    return response()->json($candidates, 201);
+    if ($candidates) {
+        return response()->json($candidates, 201);
+    } else {
+        return response()->json(['success' => false, 'message' => 'No candidates found'], 404);
+    }
 }
-public function searchGovernor(Request $request)
+public function searchGovernor()
 {
     
-    $searchQuery = $request->input('q');
 
-    $candidates = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
-        ->where('tblcandidates.office', 'Governor')
-        ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
-        })
-        ->select('tblcandidates.*', 'tblvoters.*', 'tblpartys.*')
-        ->get();
-
-    return response()->json($candidates, 201);
 }
 }

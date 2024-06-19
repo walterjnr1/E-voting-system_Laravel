@@ -177,40 +177,34 @@ public function selectPresident()
 }
 public function searchPresident(Request $request)
 {
-    $searchQuery = $request->input('q');
+    $searchQuery = $request->input('search_query');
+
     $candidates = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
-        ->where('tblcandidates.office', 'President')
-        ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-         ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
-        })
-        ->select('tblcandidates.*', 'tblvoters.*','tblpartys.*')
+        ->join('tblpartys', 'tblcandidates.party_id', '=', 'tblpartys.id')
+        ->join('tblvoters', 'tblcandidates.voter_id', '=', 'tblvoters.id')
+        ->where('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
+        ->orWhere('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
+        ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%")
         ->get();
 
-    return response()->json($candidates, 201);
+    return response()->json($candidates,201);
 }
 public function searchGovernor(Request $request)
 {
     
-    $searchQuery = $request->input('q');
+    $query = $request->input('query');
 
     $candidates = DB::table('tblcandidates')
         ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
         ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
         ->where('tblcandidates.office', 'Governor')
         ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
+        ->where(function ($q) use ($query) {
+            $q->where('tblcandidates.candidateName', 'LIKE', "%{$query}%")
+            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$query}%")
+            ->orwhere('tblvoters.voterID', 'LIKE', "%{$query}%")
+            ->orWhere('tblvoters.fullname', 'LIKE', "%{$query}%")
+            ->orWhere('tblpartys.name', 'LIKE', "%{$query}%");
         })
         ->select('tblcandidates.*', 'tblvoters.*', 'tblpartys.*')
         ->get();

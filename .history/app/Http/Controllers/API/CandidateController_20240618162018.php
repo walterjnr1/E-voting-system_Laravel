@@ -177,44 +177,13 @@ public function selectPresident()
 }
 public function searchPresident(Request $request)
 {
-    $searchQuery = $request->input('q');
-    $candidates = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
-        ->where('tblcandidates.office', 'President')
-        ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-         ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
-        })
-        ->select('tblcandidates.*', 'tblvoters.*','tblpartys.*')
-        ->get();
+    $query = $request->input('search');
 
-    return response()->json($candidates, 201);
+    
 }
-public function searchGovernor(Request $request)
+public function searchGovernor()
 {
     
-    $searchQuery = $request->input('q');
 
-    $candidates = DB::table('tblcandidates')
-        ->join('tblvoters', 'tblcandidates.voterID', '=', 'tblvoters.voterID')
-        ->join('tblpartys', 'tblcandidates.party', '=', 'tblpartys.name')
-        ->where('tblcandidates.office', 'Governor')
-        ->where('tblcandidates.status', 1)
-        ->where(function ($q) use ($searchQuery) {
-            $q->where('tblcandidates.candidateName', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblcandidates.candidateID', 'LIKE', "%{$searchQuery}%")
-            ->orwhere('tblvoters.voterID', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblvoters.fullname', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('tblpartys.name', 'LIKE', "%{$searchQuery}%");
-        })
-        ->select('tblcandidates.*', 'tblvoters.*', 'tblpartys.*')
-        ->get();
-
-    return response()->json($candidates, 201);
 }
 }
