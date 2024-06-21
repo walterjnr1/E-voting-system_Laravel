@@ -96,9 +96,7 @@
                                     <td class="table-plus">
                                         <div align="center">{{ $row->office }} </div>
                                     </td>
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->party }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">
                                             @if ($row->status == 1)

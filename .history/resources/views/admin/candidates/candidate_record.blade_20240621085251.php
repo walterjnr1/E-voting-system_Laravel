@@ -22,9 +22,7 @@
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">
-                                    <div align="center"><strong>SN </strong></div>
-                                </th>
+                                
                                 <th>
                                     <div align="center"><strong>Photo </strong></div>
                                 </th>
@@ -37,9 +35,7 @@
                                 <th>
                                     <div align="center"><strong>Sex</strong></div>
                                 </th>
-                                <th>
-                                    <div align="center"><strong>Occupation</strong></div>
-                                </th>
+                                
                                 <th>
                                     <div align="center"><strong>Qualification </strong></div>
                                 </th>
@@ -66,9 +62,7 @@
                         <tbody>
                             @foreach ($data as $cnt => $row)
                                 <tr>
-                                    <td height="116" class="table-plus">
-                                        <div align="center">{{ $cnt + 1 }}</div>
-                                  </td>
+                                    
                                     <td>
                                         <div align="center"><img src="../{{$row->image }}" width="37"
                                                 height="31" border="2" /></div>
@@ -84,9 +78,7 @@
                                         <div align="center">{{ $row->sex }} </div>
                                     </td>
 
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->occupation }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">{{ $row->educational_qualification }} </div>
                                     </td>

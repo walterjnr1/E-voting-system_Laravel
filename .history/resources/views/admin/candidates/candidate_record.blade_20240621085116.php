@@ -97,7 +97,7 @@
                                         <div align="center">{{ $row->office }} </div>
                                     </td>
                                     <td class="table-plus">
-                                        <div align="center">{{ $row->party }} </div>
+                                        <div align="center">{{ $row->office }} </div>
                                     </td>
                                     <td class="table-plus">
                                         <div align="center">

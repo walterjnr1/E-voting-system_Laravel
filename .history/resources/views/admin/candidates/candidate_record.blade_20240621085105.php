@@ -51,7 +51,7 @@
                                     <div align="center"><strong>Office</strong></div>
                                 </th>
                                 <th>
-                                    <div align="center"><strong>Party</strong></div>
+                                    <div align="center"><strong>Office</strong></div>
                                 </th>
                                 <th>
                                     <div align="center"><strong>Status</strong></div>
@@ -96,9 +96,7 @@
                                     <td class="table-plus">
                                         <div align="center">{{ $row->office }} </div>
                                     </td>
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->party }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">
                                             @if ($row->status == 1)

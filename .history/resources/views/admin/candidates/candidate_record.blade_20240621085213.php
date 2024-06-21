@@ -84,9 +84,7 @@
                                         <div align="center">{{ $row->sex }} </div>
                                     </td>
 
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->occupation }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">{{ $row->educational_qualification }} </div>
                                     </td>

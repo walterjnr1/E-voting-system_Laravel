@@ -68,7 +68,7 @@
                                     </td>
 
                                     <td class="table-plus">
-                                        <div align="center">{{ $row->candidateName }}-{{ $row->party }} </div>
+                                        <div align="center">{{ $row->candidateName -  }} </div>
                                     </td>
                                     <td class="table-plus">
                                         <div align="center">{{ $row->vote_time }} </div>

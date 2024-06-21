@@ -37,15 +37,11 @@
                                 <th>
                                     <div align="center"><strong>Sex</strong></div>
                                 </th>
-                                <th>
-                                    <div align="center"><strong>Occupation</strong></div>
-                                </th>
+                                
                                 <th>
                                     <div align="center"><strong>Qualification </strong></div>
                                 </th>
-                               <th>
-                                    <div align="center"><strong>State</strong></div>
-                                </th>
+                               
                               
                                 <th>
                                     <div align="center"><strong>Office</strong></div>
@@ -84,15 +80,11 @@
                                         <div align="center">{{ $row->sex }} </div>
                                     </td>
 
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->occupation }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">{{ $row->educational_qualification }} </div>
                                     </td>
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->state }} </div>
-                                    </td>
+                                    
                                     <td class="table-plus">
                                         <div align="center">{{ $row->office }} </div>
                                     </td>

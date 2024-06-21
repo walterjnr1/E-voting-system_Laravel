@@ -22,9 +22,7 @@
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">
-                                    <div align="center"><strong>SN </strong></div>
-                                </th>
+                                
                                 <th>
                                     <div align="center"><strong>Photo </strong></div>
                                 </th>
@@ -37,9 +35,7 @@
                                 <th>
                                     <div align="center"><strong>Sex</strong></div>
                                 </th>
-                                <th>
-                                    <div align="center"><strong>Occupation</strong></div>
-                                </th>
+                                
                                 <th>
                                     <div align="center"><strong>Qualification </strong></div>
                                 </th>
@@ -84,9 +80,7 @@
                                         <div align="center">{{ $row->sex }} </div>
                                     </td>
 
-                                    <td class="table-plus">
-                                        <div align="center">{{ $row->occupation }} </div>
-                                    </td>
+                                   
                                     <td class="table-plus">
                                         <div align="center">{{ $row->educational_qualification }} </div>
                                     </td>
