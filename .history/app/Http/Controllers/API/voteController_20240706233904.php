@@ -20,7 +20,7 @@ class voteController extends Controller
 
     $voteRecord = DB::table('tblvotes')->where('voterID', $voterID)->where('election_type', 'President')->first();
     if ($voteRecord) {
-        return response()->json(['success' => false, 'message' => ' You have already Cast your vote for this type of Election'], 404);
+        return response()->json(['success' => false, 'message' => ' You have already Casted your vote in this type of Election'], 404);
     } else {
 
         //update candidate count
@@ -36,7 +36,7 @@ class voteController extends Controller
             'election_type' => 'President',
         ]);
         
-        return response()->json(['success' => true, 'message' => 'You Voted successfully Voted'], 201);
+        return response()->json(['success' => true, 'message' => 'You Voted successfully'], 201);
     }
     
 }
@@ -45,7 +45,28 @@ class voteController extends Controller
 public function vote_Governor(Request $request)
 {
     $candidateID = $request->input('candidateID');
-    $candidate = tblcandidate::where('office', 'Governor')->where('candidateID', $candidateID)->first();
-    return response()->json($candidate, 201);
+    $voterID = $request->input('voterID');
+
+    $voteRecord = DB::table('tblvotes')->where('voterID', $voterID)->where('election_type', 'Governor')->first();
+    if ($voteRecord) {
+        return response()->json(['success' => false, 'message' => ' You have already Casted your vote in this type of Election'], 404);
+    } else {
+
+        //update candidate count
+        $candidate = tblcandidate::where('candidateID', $candidateID)->first();
+        $candidate->count = $candidate->count + 1;
+        $candidate->save();
+
+
+        tblvote::create([
+            'voterID' => $voterID,
+            'candidateID' => $candidateID,
+            'vote_time' => now(),
+            'election_type' => 'Governor',
+        ]);
+        
+        return response()->json(['success' => true, 'message' => 'You Voted successfully'], 201);
+    }
 }
 }
+s
