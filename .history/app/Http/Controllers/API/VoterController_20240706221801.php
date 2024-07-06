@@ -251,12 +251,12 @@ $mail->send();
  $result  = json_decode($result);
 
 //send otp email
-$appname="Secured E-voting System";  
+$appname="Secured Mobile-based E-voting System using 2FA security";  
 $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "support@e-voting.com";
+$email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
 
 $mail = new PHPMailer(true);
 
@@ -276,45 +276,14 @@ $mail->addAddress($email,$fullname);     //Add a recipient
 $message = "
 <html>
 <head>
-  <title>OTP | $appname</title>
-  <style>
-    body {
-      background-color: #f7f7f7; /* light green background */
-      padding: 20px;
-      font-family: Tahoma; 
-      font-size: 14px;
-    }
-  .email-body {
-      padding: 20px;
-      border: 3px solid #34C759; /* thick green border with reduced width */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
-      text-align: center; /* center the text */
-      position: relative; /* add this to make the watermark work */
-    }
-  .logo {
-      display: block;
-      margin: 0 auto; /* center the logo */
-      width: 30px; /* set logo width */
-      height: 30px; /* set logo height */
-    }
-  
-  </style>
+<title>OTP |$appname </title>
 </head>
 <body>
-  <table width='80%' cellpadding='0' cellspacing='0' border='0'>
-    <tr>
-      
-    </tr>
-    <tr>
-      <td class='email-body'>
+<p>Hello $fullname ,</p>
 
-        <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-        <p style='text-align: justify;'>Your OTP is : $otp.</p>
-        <p style='text-align: justify;'>Regards,</p>
-        <p style='text-align: justify;'>". $appname. " Team</p>
-      </td>
-    </tr>
-  </table>
+<p>  Your OTP code is :$otp  .</p>
+
+<p>$appname</p>        
 </body>
 </html>
 ";
@@ -388,43 +357,35 @@ $otp = rand(10200, 90002);
  $result  = json_decode($result);
 
 //send otp email
-$appname="Secured E-voting System";  
-$email_server="SMTP.GMAIL.COM";
-$email_username="ADMISSION.MANSENSHS@GMAIL.COM";
-$app_password="XMVLDREPYHGKJFKF";
-$port=465;
-$email_website = "support@e-voting.COM";
-
 $mail = new PHPMailer(true);
-
+            
 //Server settings
 $mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = $email_server;                     //Set the SMTP server to send through
+$mail->Host       = env('MAIL_HOST');                     //Set the SMTP server to send through
 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = $email_username;                     //SMTP username
-$mail->Password   = $app_password;                               //SMTP password
+$mail->Username   = env('MAIL_USERNAME');                     //SMTP username
+$mail->Password   = env('MAIL_PASSWORD');                               //SMTP password
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = $port;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+ $mail->Port       = env('MAIL_POST');                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 //Recipients
-$mail->setFrom($email_website, $appname);
-$mail->addAddress($email,$fullname);     //Add a recipient
-
+$mail->setFrom(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+$mail->addAddress($email,$fullname);    
 
 $message = "
 <html>
 <head>
-  <title>OTP | $appname</title>
-  <style>
+<title>OTP | ".env('APP_NAME')." </title>
+<style>
     body {
       background-color: #f7f7f7; /* light green background */
-      padding: 20px;
-      font-family: Tahoma; 
-      font-size: 14px;
+      padding: 15px;
+      font-family: Tahoma; /* set font family to Tahoma */
+      font-size: 14px; /* set font size to 12px */
     }
   .email-body {
-      padding: 20px;
-      border: 3px solid #34C759; /* thick green border with reduced width */
+      padding: 15px;
+      border: 5px solid #34C759; /* thick green border with reduced width */
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
       text-align: center; /* center the text */
       position: relative; /* add this to make the watermark work */
@@ -446,17 +407,21 @@ $message = "
     <tr>
       <td class='email-body'>
 
-        <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-        <p style='text-align: justify;'>Your OTP is : $otp.</p>
-        <p style='text-align: justify;'>Regards,</p>
-        <p style='text-align: justify;'>". $appname. " Team</p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Hello ". $fullname. ",</p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Your OTP code is $o </p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong>Candidate ID :$candidateID  </strong></p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong><strong>Office Contesting for :$office </strong></p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong>Party :$party </strong></p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Thanks once again</p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Regards</p>
+        <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>". env('APP_NAME'). " Team</p>
+
       </td>
     </tr>
   </table>
 </body>
 </html>
 ";
-
 //Content
 $mail->isHTML(true);                                  //Set email format to HTML
 $mail->Subject = 'OTP | '.$appname.'';

@@ -251,7 +251,7 @@ $mail->send();
  $result  = json_decode($result);
 
 //send otp email
-$appname="Secured E-voting System";  
+$appname="E-voting System";  
 $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
@@ -388,12 +388,12 @@ $otp = rand(10200, 90002);
  $result  = json_decode($result);
 
 //send otp email
-$appname="Secured E-voting System";  
+$appname="Evoting System";  
 $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "support@e-voting.COM";
+$email_website = "support@evoting.COM";
 
 $mail = new PHPMailer(true);
 

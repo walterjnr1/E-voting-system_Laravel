@@ -83,7 +83,7 @@ class CandidateController extends Controller
                   background-color: #f7f7f7; /* light green background */
                   padding: 15px;
                   font-family: Tahoma; /* set font family to Tahoma */
-                  font-size: 14px; /* set font size to 12px */
+                  font-size: 12px; /* set font size to 12px */
                 }
               .email-body {
                   padding: 15px;

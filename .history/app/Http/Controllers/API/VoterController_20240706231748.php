@@ -251,12 +251,12 @@ $mail->send();
  $result  = json_decode($result);
 
 //send otp email
-$appname="Secured E-voting System";  
+$appname="E-voting System";  
 $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "support@e-voting.com";
+$email_website = "support@evoting.com";
 
 $mail = new PHPMailer(true);
 
@@ -276,45 +276,14 @@ $mail->addAddress($email,$fullname);     //Add a recipient
 $message = "
 <html>
 <head>
-  <title>OTP | $appname</title>
-  <style>
-    body {
-      background-color: #f7f7f7; /* light green background */
-      padding: 20px;
-      font-family: Tahoma; 
-      font-size: 14px;
-    }
-  .email-body {
-      padding: 20px;
-      border: 3px solid #34C759; /* thick green border with reduced width */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
-      text-align: center; /* center the text */
-      position: relative; /* add this to make the watermark work */
-    }
-  .logo {
-      display: block;
-      margin: 0 auto; /* center the logo */
-      width: 30px; /* set logo width */
-      height: 30px; /* set logo height */
-    }
-  
-  </style>
+<title>OTP |$appname </title>
 </head>
 <body>
-  <table width='80%' cellpadding='0' cellspacing='0' border='0'>
-    <tr>
-      
-    </tr>
-    <tr>
-      <td class='email-body'>
+<p>Hello $fullname ,</p>
 
-        <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-        <p style='text-align: justify;'>Your OTP is : $otp.</p>
-        <p style='text-align: justify;'>Regards,</p>
-        <p style='text-align: justify;'>". $appname. " Team</p>
-      </td>
-    </tr>
-  </table>
+<p>  Your OTP code is :$otp  .</p>
+
+<p>$appname</p>        
 </body>
 </html>
 ";
@@ -414,17 +383,15 @@ $mail->addAddress($email,$fullname);     //Add a recipient
 $message = "
 <html>
 <head>
-  <title>OTP | $appname</title>
+  <title>OT | $appname</title>
   <style>
     body {
       background-color: #f7f7f7; /* light green background */
       padding: 20px;
-      font-family: Tahoma; 
-      font-size: 14px;
     }
   .email-body {
       padding: 20px;
-      border: 3px solid #34C759; /* thick green border with reduced width */
+      border: 5px solid #34C759; /* thick green border with reduced width */
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
       text-align: center; /* center the text */
       position: relative; /* add this to make the watermark work */
@@ -445,6 +412,7 @@ $message = "
     </tr>
     <tr>
       <td class='email-body'>
+      <img height='90' src=\"https://www.pereztelecoms.ng/uploadImage/Logo/logo.png\" width='108'>
 
         <p style='text-align: justify;'>Hello ". $fullname. ",</p>
         <p style='text-align: justify;'>Your OTP is : $otp.</p>
