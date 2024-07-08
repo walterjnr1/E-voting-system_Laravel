@@ -121,9 +121,9 @@ $message = "
               width: 30px; /* set logo width */
               height: 30px; /* set logo height */
             }
-            .otp {
+            .voterid {
               font-size: 24px; /* increase font size to 24px */
-              font-weight: bold; /* make the otp bold */
+              font-weight: bold; /* make the voterid bold */
             }
           </style>
         </head>
@@ -135,10 +135,9 @@ $message = "
             <tr>
               <td class='email-body'>
         
-                <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-                      <p style='text-align: justify;' >your OTP is : <span class='otp'>$otp</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your OTP</p>
+                <p style='text-align: justify;'>Hello ". $voterRecord->fullname. ",</p>
+                      <p style='text-align: justify;'><p>  Your your registration with our E-voting App is complete</p></p>
+                      <p style='text-align: justify;' >VOTER ID is : <span class='voterid'>$voterID</span>.</p>
                       <p style='text-align: justify;'>Regards,</p>
                       <p style='text-align: justify;'>". $appname. " Team</p>
 
@@ -253,8 +252,6 @@ $mail->send();
                 <p style='text-align: justify;'>Hello ". $voterRecord->fullname. ",</p>
                       <p style='text-align: justify;'><p>  Your your registration with our E-voting App is complete</p></p>
                       <p style='text-align: justify;' >VOTER ID is : <span class='voterid'>$voterID</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your voter ID</p>
                       <p style='text-align: justify;'>Regards,</p>
                       <p style='text-align: justify;'>". $appname. " Team</p>
 

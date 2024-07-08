@@ -1,11 +1,15 @@
 <?php
 
+
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\API\tblotp;
 use App\Models\API\tblvoter;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -98,56 +102,19 @@ $mail->setFrom($email_website, $appname);
 $mail->addAddress($email,$fullname);     //Add a recipient
 
 $message = "
-        <html>
-        <head>
-          <title>OTP | $appname</title>
-          <style>
-            body {
-              background-color: #f7f7f7; /* light green background */
-              padding: 20px;
-              font-family: Tahoma; 
-              font-size: 14px;
-            }
-          .email-body {
-              padding: 20px;
-              border: 3px solid #34C759; /* thick green border with reduced width */
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
-              text-align: center; /* center the text */
-              position: relative; /* add this to make the watermark work */
-            }
-          .logo {
-              display: block;
-              margin: 0 auto; /* center the logo */
-              width: 30px; /* set logo width */
-              height: 30px; /* set logo height */
-            }
-            .otp {
-              font-size: 24px; /* increase font size to 24px */
-              font-weight: bold; /* make the otp bold */
-            }
-          </style>
-        </head>
-        <body>
-          <table width='80%' cellpadding='0' cellspacing='0' border='0'>
-            <tr>
-              
-            </tr>
-            <tr>
-              <td class='email-body'>
-        
-                <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-                      <p style='text-align: justify;' >your OTP is : <span class='otp'>$otp</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your OTP</p>
-                      <p style='text-align: justify;'>Regards,</p>
-                      <p style='text-align: justify;'>". $appname. " Team</p>
+<html>
+<head>
+<title>OTP |$appname </title>
+</head>
+<body>
+<p>Hello $fullname ,</p>
+       
+<p>  Your OTP code is :$otp  .</p>
 
-              </td>
-            </tr>
-          </table>
-        </body>
-        </html>
-        ";
+<p>$appname</p>        
+</body>
+</html>
+";
 
 //Content
 $mail->isHTML(true);                                  //Set email format to HTML
@@ -190,12 +157,12 @@ $mail->send();
         DB::update('update tblvoters set status =? where phone =?', ["1", $phone]);
 
        //send success email
-       $appname="Secured E-voting System";  
-       $email_server="SMTP.GMAIL.COM";
-       $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
-       $app_password="XMVLDREPYHGKJFKF";
-       $port=465;
-       $email_website = "support@e-voting.com";
+        $appname = "Secured Mobile-based E-voting System using 2FA security";
+        $email_server = "SMTP.GMAIL.COM";
+        $email_username = "ADMISSION.MANSENSHS@GMAIL.COM";
+        $app_password = "XMVLDREPYHGKJFKF";
+        $port = 465;
+        $email_website = "ADMISSION.MANSENSHS@GMAIL.COM";
 
         $mail = new PHPMailer(true);
 
@@ -215,58 +182,21 @@ $mail->send();
         $message = "
         <html>
         <head>
-          <title>OTP | $appname</title>
-          <style>
-            body {
-              background-color: #f7f7f7; /* light green background */
-              padding: 20px;
-              font-family: Tahoma; 
-              font-size: 14px;
-            }
-          .email-body {
-              padding: 20px;
-              border: 3px solid #34C759; /* thick green border with reduced width */
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
-              text-align: center; /* center the text */
-              position: relative; /* add this to make the watermark work */
-            }
-          .logo {
-              display: block;
-              margin: 0 auto; /* center the logo */
-              width: 30px; /* set logo width */
-              height: 30px; /* set logo height */
-            }
-            .voterid {
-              font-size: 24px; /* increase font size to 24px */
-              font-weight: bold; /* make the voterid bold */
-            }
-          </style>
+        <title>Registration Complete |$appname </title>
         </head>
         <body>
-          <table width='80%' cellpadding='0' cellspacing='0' border='0'>
-            <tr>
-              
-            </tr>
-            <tr>
-              <td class='email-body'>
-        
-                <p style='text-align: justify;'>Hello ". $voterRecord->fullname. ",</p>
-                      <p style='text-align: justify;'><p>  Your your registration with our E-voting App is complete</p></p>
-                      <p style='text-align: justify;' >VOTER ID is : <span class='voterid'>$voterID</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your voter ID</p>
-                      <p style='text-align: justify;'>Regards,</p>
-                      <p style='text-align: justify;'>". $appname. " Team</p>
+        <p>Hello $voterRecord->fullname,</p>
 
-              </td>
-            </tr>
-          </table>
+        <p>  Your your registration with our E-voting App is complete</p>
+        <p>  Your voter ID is :$phone.</p>
+        <p>  Always keep your Voter ID safe. Thanks</p>
+
+
+        <p>Regards</p>
+        <p>$appname</p>
         </body>
         </html>
         ";
-        
-
-
 
         //Content
         $mail->isHTML(true); //Set email format to HTML
@@ -367,10 +297,7 @@ $message = "
       width: 30px; /* set logo width */
       height: 30px; /* set logo height */
     }
-    .otp {
-      font-size: 24px; /* increase font size to 24px */
-      font-weight: bold; /* make the OTP bold */
-    }
+  
   </style>
 </head>
 <body>
@@ -382,7 +309,7 @@ $message = "
       <td class='email-body'>
 
         <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-        <p style='text-align: justify;' >Your OTP is : <span class='otp'>$otp</span>.</p>
+        <p style='text-align: justify;'>Your OTP is : $otp.</p>
         <p style='text-align: justify;'>Regards,</p>
         <p style='text-align: justify;'>". $appname. " Team</p>
       </td>
@@ -461,12 +388,13 @@ $otp = rand(10200, 90002);
  $result  = json_decode($result);
 
 //send otp email
+/*
 $appname="Secured E-voting System";  
 $email_server="SMTP.GMAIL.COM";
 $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
 $app_password="XMVLDREPYHGKJFKF";
 $port=465;
-$email_website = "support@e-voting.com";
+$email_website = "support@e-voting.COM";
 
 $mail = new PHPMailer(true);
 
@@ -482,6 +410,7 @@ $mail->Port       = $port;                                    //TCP port to conn
 //Recipients
 $mail->setFrom($email_website, $appname);
 $mail->addAddress($email,$fullname);     //Add a recipient
+
 
 $message = "
 <html>
@@ -507,10 +436,7 @@ $message = "
       width: 30px; /* set logo width */
       height: 30px; /* set logo height */
     }
-    .otp {
-      font-size: 24px; /* increase font size to 24px */
-      font-weight: bold; /* make the OTP bold */
-    }
+  
   </style>
 </head>
 <body>
@@ -522,7 +448,7 @@ $message = "
       <td class='email-body'>
 
         <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-        <p style='text-align: justify;' >Your OTP is : <span class='otp'>$otp</span>.</p>
+        <p style='text-align: justify;'>Your OTP is : $otp.</p>
         <p style='text-align: justify;'>Regards,</p>
         <p style='text-align: justify;'>". $appname. " Team</p>
       </td>
@@ -537,6 +463,8 @@ $mail->isHTML(true);                                  //Set email format to HTML
 $mail->Subject = 'OTP | '.$appname.'';
 $mail->Body    = $message;
 $mail->send();
+
+*/
 
 tblotp::create([
     'code' => $otp,

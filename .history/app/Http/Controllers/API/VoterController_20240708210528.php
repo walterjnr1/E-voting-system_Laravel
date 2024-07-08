@@ -254,7 +254,6 @@ $mail->send();
                       <p style='text-align: justify;'><p>  Your your registration with our E-voting App is complete</p></p>
                       <p style='text-align: justify;' >VOTER ID is : <span class='voterid'>$voterID</span>.</p>
                      
-                      <p style='text-align: justify;'>Please do not disclose your voter ID</p>
                       <p style='text-align: justify;'>Regards,</p>
                       <p style='text-align: justify;'>". $appname. " Team</p>
 

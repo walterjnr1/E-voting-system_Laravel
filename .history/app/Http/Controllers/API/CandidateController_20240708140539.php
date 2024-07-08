@@ -52,8 +52,85 @@ class CandidateController extends Controller
             $party =  $candidate->party;
 
 
-            //send email 
+            //send 
+            $appname="Secured E-voting System";  
+            $email_server="SMTP.GMAIL.COM";
+            $email_username="ADMISSION.MANSENSHS@GMAIL.COM";
+            $app_password="XMVLDREPYHGKJFKF";
+            $port=465;
+            $email_website = "support@e-voting.com";
+
+            $mail = new PHPMailer(true);
             
+            //Server settings
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = $email_server;                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = $email_username;                     //SMTP username
+            $mail->Password   = $app_password;                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = $port;                                         //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+            //Recipients
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $mail->addAddress($email,$fullname);     //Add a recipient
+            
+            $message = "
+            <html>
+            <head>
+            <title>Candidate Registration | ".$appname." </title>
+            <style>
+                body {
+                  background-color: #f7f7f7; /* light green background */
+                  padding: 15px;
+                  font-family: Tahoma; /* set font family to Tahoma */
+                  font-size: 14px; /* set font size to 12px */
+                }
+              .email-body {
+                  padding: 15px;
+                  border: 5px solid #34C759; /* thick green border with reduced width */
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
+                  text-align: center; /* center the text */
+                  position: relative; /* add this to make the watermark work */
+                }
+              .logo {
+                  display: block;
+                  margin: 0 auto; /* center the logo */
+                  width: 30px; /* set logo width */
+                  height: 30px; /* set logo height */
+                }
+              
+              </style>
+            </head>
+            <body>
+              <table width='80%' cellpadding='0' cellspacing='0' border='0'>
+                <tr>
+                  
+                </tr>
+                <tr>
+                  <td class='email-body'>
+            
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Hello ". $fullname. ",</p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Your Candidate registration with our E-voting App is complete. Your applications ,data and credentials will be verified by us..</p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong>Candidate ID :$candidateID  </strong></p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong><strong>Office Contesting for :$office </strong></p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'> <strong>Party :$party </strong></p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Thanks once again</p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>Regards</p>
+                    <p style='text-align: justify; font-size: 12px; font-family: Tahoma;'>". env('APP_NAME'). " Team</p>
+            
+                  </td>
+                </tr>
+              </table>
+            </body>
+            </html>
+            ";
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Candidate Registration | '.$appname.'';
+            $mail->Body    = $message;
+            $mail->send();
 
         
        $token = $candidate->createToken('register_candidate')->plainTextToken;

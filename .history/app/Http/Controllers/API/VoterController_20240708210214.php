@@ -98,56 +98,19 @@ $mail->setFrom($email_website, $appname);
 $mail->addAddress($email,$fullname);     //Add a recipient
 
 $message = "
-        <html>
-        <head>
-          <title>OTP | $appname</title>
-          <style>
-            body {
-              background-color: #f7f7f7; /* light green background */
-              padding: 20px;
-              font-family: Tahoma; 
-              font-size: 14px;
-            }
-          .email-body {
-              padding: 20px;
-              border: 3px solid #34C759; /* thick green border with reduced width */
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a shade to the background */
-              text-align: center; /* center the text */
-              position: relative; /* add this to make the watermark work */
-            }
-          .logo {
-              display: block;
-              margin: 0 auto; /* center the logo */
-              width: 30px; /* set logo width */
-              height: 30px; /* set logo height */
-            }
-            .otp {
-              font-size: 24px; /* increase font size to 24px */
-              font-weight: bold; /* make the otp bold */
-            }
-          </style>
-        </head>
-        <body>
-          <table width='80%' cellpadding='0' cellspacing='0' border='0'>
-            <tr>
-              
-            </tr>
-            <tr>
-              <td class='email-body'>
-        
-                <p style='text-align: justify;'>Hello ". $fullname. ",</p>
-                      <p style='text-align: justify;' >your OTP is : <span class='otp'>$otp</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your OTP</p>
-                      <p style='text-align: justify;'>Regards,</p>
-                      <p style='text-align: justify;'>". $appname. " Team</p>
+<html>
+<head>
+<title>OTP |$appname </title>
+</head>
+<body>
+<p>Hello $fullname ,</p>
+       
+<p>  Your OTP code is :$otp  .</p>
 
-              </td>
-            </tr>
-          </table>
-        </body>
-        </html>
-        ";
+<p>$appname</p>        
+</body>
+</html>
+";
 
 //Content
 $mail->isHTML(true);                                  //Set email format to HTML
@@ -215,6 +178,25 @@ $mail->send();
         $message = "
         <html>
         <head>
+        <title>Registration Complete |$appname </title>
+        </head>
+        <body>
+        <p>Hello $voterRecord->fullname,</p>
+
+        <p>  Your your registration with our E-voting App is complete</p>
+        <p>  Your voter ID is :$phone.</p>
+        <p>  Always keep your Voter ID safe. Thanks</p>
+
+
+        <p>Regards</p>
+        <p>$appname</p>
+        </body>
+        </html>
+        ";
+
+        $message = "
+        <html>
+        <head>
           <title>OTP | $appname</title>
           <style>
             body {
@@ -236,9 +218,9 @@ $mail->send();
               width: 30px; /* set logo width */
               height: 30px; /* set logo height */
             }
-            .voterid {
+            .otp {
               font-size: 24px; /* increase font size to 24px */
-              font-weight: bold; /* make the voterid bold */
+              font-weight: bold; /* make the OTP bold */
             }
           </style>
         </head>
@@ -253,8 +235,6 @@ $mail->send();
                 <p style='text-align: justify;'>Hello ". $voterRecord->fullname. ",</p>
                       <p style='text-align: justify;'><p>  Your your registration with our E-voting App is complete</p></p>
                       <p style='text-align: justify;' >VOTER ID is : <span class='voterid'>$voterID</span>.</p>
-                     
-                      <p style='text-align: justify;'>Please do not disclose your voter ID</p>
                       <p style='text-align: justify;'>Regards,</p>
                       <p style='text-align: justify;'>". $appname. " Team</p>
 
