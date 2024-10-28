@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/countrecord', [CountController::class,'countUsers'])->name('countrecord');
 });
 
+
 Route::middleware('auth')->group(function () {
 Route::get('/voterRecord', [voterController::class,'voterRecordView'])->name('voterRecord.view');
 Route::get('/ViewVoterData/{id}', [voterController::class,'ViewAllVoterRecords'])->name('ViewAllVoterRecords.view');
