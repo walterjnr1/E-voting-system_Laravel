@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    RewriteEngine on
+RewriteCond %{HTTP_HOST} ^domainname.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^domainname.com$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
+</IfModule>
